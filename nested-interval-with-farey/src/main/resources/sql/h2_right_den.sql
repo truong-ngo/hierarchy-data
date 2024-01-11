@@ -1,0 +1,1 @@
+CREATE ALIAS rightDen FOR "com.example.nestedintervalwithfarey.domain.Rational.inverse";

@@ -1,0 +1,1 @@
+CREATE ALIAS compare FOR "com.example.nestedintervalwithfarey.domain.Rational.compare";

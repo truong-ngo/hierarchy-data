@@ -1,0 +1,1 @@
+CREATE ALIAS rightNum FOR "com.example.nestedintervalwithfarey.domain.Rational.nextNum";
