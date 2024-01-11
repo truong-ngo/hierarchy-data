@@ -4,12 +4,12 @@ import com.example.nestedintervalwithfarey.domain.Node_;
 import com.example.nestedintervalwithfarey.domain.Rational;
 
 public class NodeUtils {
-    public static String getNodeElement(Rational.Element element) {
+    public static String getRationalElement(Rational.Element element) {
         return element.equals(Rational.Element.NUMERATOR) ? Node_.LEFT_NUM : Node_.LEFT_DEN;
     }
 
     public enum NodeFunction {
-        RIGHT_NUM("rightNum"), RIGHT_DEN("rightNum");
+        RIGHT_NUM("rightNum"), RIGHT_DEN("rightNum"), COMPARE("compare");
 
         private final String name;
 

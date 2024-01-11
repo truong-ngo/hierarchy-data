@@ -25,7 +25,7 @@ public class NodeExpression {
         Expression<Long> nodeNumExpr = getNodeExpression(node, builder, side, Rational.Element.NUMERATOR);
         Expression<Long> nodeDenExpr = getNodeExpression(node, builder, side, Rational.Element.DENOMINATOR);
 
-        return builder.function("compare", Long.class,
+        return builder.function(NodeFunction.COMPARE.getName(), Long.class,
                 rootNumExpr, rootDenExpr,
                 nodeNumExpr, nodeDenExpr);
     }
@@ -44,7 +44,7 @@ public class NodeExpression {
      * @Return leftNum - rightNum or leftDen - rightDen
      * */
     public static Expression<Long> nodeDiff(Root<Node> root, CriteriaBuilder builder, Rational.Element element) {
-        String el = NodeUtils.getNodeElement(element);
+        String el = NodeUtils.getRationalElement(element);
         String function = element.equals(Rational.Element.NUMERATOR) ? NodeFunction.RIGHT_NUM.getName() : NodeFunction.RIGHT_DEN.getName();
         return builder.diff(root.get(el), builder.function(function, Long.class, root.get(Node_.LEFT_NUM), root.get(Node_.LEFT_DEN)));
     }
@@ -54,7 +54,7 @@ public class NodeExpression {
      * @Return one of (leftNum, leftDen, rightNum, rightDen)
      * */
     public static Expression<Long> getNodeExpression(Root<Node> root, CriteriaBuilder builder, Interval.Side side, Rational.Element element) {
-        String el = NodeUtils.getNodeElement(element);
+        String el = NodeUtils.getRationalElement(element);
         return side.equals(Interval.Side.LEFT) ? root.get(el) : right(root, builder, element);
     }
 }
