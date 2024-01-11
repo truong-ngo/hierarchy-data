@@ -46,11 +46,11 @@ public class NodeSpec {
      * Specification to find descendants node
      * */
     public static Specification<Node> isDescendantsOf(Long id) {
-        return (root, query, criteriaBuilder) -> {
+        return (descendants, query, criteriaBuilder) -> {
             Root<Node> node = query.from(Node.class);
             return criteriaBuilder.and(
-                    compare(root, node, criteriaBuilder, Operator.GREATER, Interval.Side.LEFT),
-                    compare(root, node, criteriaBuilder, Operator.LESSER_THAN_EQUAL, Interval.Side.RIGHT),
+                    compare(descendants, node, criteriaBuilder, Operator.GREATER, Interval.Side.LEFT),
+                    compare(descendants, node, criteriaBuilder, Operator.LESSER_THAN_EQUAL, Interval.Side.RIGHT),
                     hasId(node, criteriaBuilder, id)
             );
         };
@@ -60,11 +60,11 @@ public class NodeSpec {
      * Specification to find ancestors node
      * */
     public static Specification<Node> isAncestorsOf(Long id) {
-        return (root, query, criteriaBuilder) -> {
+        return (ancestors, query, criteriaBuilder) -> {
             Root<Node> node = query.from(Node.class);
             return criteriaBuilder.and(
-                    compare(root, node, criteriaBuilder, Operator.LESSER, Interval.Side.LEFT),
-                    compare(root, node, criteriaBuilder, Operator.GREATER_THAN_EQUAL, Interval.Side.RIGHT),
+                    compare(ancestors, node, criteriaBuilder, Operator.LESSER, Interval.Side.LEFT),
+                    compare(ancestors, node, criteriaBuilder, Operator.GREATER_THAN_EQUAL, Interval.Side.RIGHT),
                     hasId(node, criteriaBuilder, id)
             );
         };
